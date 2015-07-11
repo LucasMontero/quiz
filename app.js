@@ -1,14 +1,14 @@
-var express         = require('express');
-var path            = require('path');
-var favicon         = require('serve-favicon');
-var logger          = require('morgan');
-var cookieParser    = require('cookie-parser');
-var bodyParser      = require('body-parser');
-var partials        = require('express-partials');
+var express         = require('express'),
+    app             = express(),
+    path            = require('path'),
+    favicon         = require('serve-favicon'),
+    logger          = require('morgan'),
+    cookieParser    = require('cookie-parser'),
+    bodyParser      = require('body-parser'),
+    partials        = require('express-partials'),
+    sassMiddleware  = require('node-sass-middleware');
 
 var routes = require('./routes/index');
-
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -56,5 +56,7 @@ app.use(function(err, req, res, next) {
     });
 });
 
-
 module.exports = app;
+
+console.log('Listening on port: 3000');
+
