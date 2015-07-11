@@ -5,8 +5,7 @@ var express         = require('express'),
     logger          = require('morgan'),
     cookieParser    = require('cookie-parser'),
     bodyParser      = require('body-parser'),
-    partials        = require('express-partials'),
-    sassMiddleware  = require('node-sass-middleware');
+    partials        = require('express-partials');
 
 var routes = require('./routes/index');
 
