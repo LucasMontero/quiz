@@ -26,8 +26,16 @@ section > div {
 
 header, nav, section, footer{
 	background: #eee;
+}
+
+header, footer{
 	text-align: center;
 }
+
+section, nav {
+	text-align: left;
+}
+
 
 nav span {
 	margin: 0px 10px 0px 0px;
