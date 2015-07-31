@@ -7,11 +7,10 @@ body{
 	content: "Smartphone Layout";
 }
 
-h1 span, section h3{
+h1 span, section h3, label.rem{
 	display: none;
 }
 
 footer, input{
 	font-size: large;
 }
-
