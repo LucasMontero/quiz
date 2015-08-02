@@ -6,12 +6,12 @@ var quizController = require('../controllers/quiz_controller.js');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  	res.render('index', { title: textTitle });
+  	res.render('index', {title: textTitle, errors:[]});
 });
 
 /* GET Authors page. */
 router.get('/Authors', function(req, res) {
-  	res.render('authors', {title: textTitle});
+  	res.render('authors', {title: textTitle, errors:[]});
 });
 
 /* Autoload de comandos con :quizID */
