@@ -29,14 +29,29 @@ var sequelize = new Sequelize(DB_name, user, pwd,
   }      
 );
 
+
+/* DEFINICIÓN DE TABLAS EN LA DB*/
+
 //Importar la definición de la tabla quiz en quiz.js
 var quiz_path = path.join(__dirname,'quiz');
-var Quiz = sequelize.import(quiz_path);
+var Quiz      = sequelize.import(quiz_path);
+
+
+//Importar la definición de la tabla comments en comment.js
+
+var comment_path = path.join(__dirname, 'comment');
+var Comment      = sequelize.import(comment_path);
+
+
+Comment.belongsTo(Quiz);
+Quiz.hasMany(Comment);
 
 exports.Quiz = Quiz; //Exporta la definición de la tabla quiz
+exports.Comment = Comment; //Exporta la definición de la tabla comment
 
+/* CREACIÖN Y INIALIZACIÓN DE LAS TABLAS DE LA DB */
 
-//sequelize.sync crea e inicializa la tabla de preguntas en DB
+//Tabla quiz
 
 sequelize.sync().then(function() {
   // success(..) ejecuta el manejador una vez creada la tabla
