@@ -9,7 +9,7 @@ var express         = require('express'),
     methodOverride  = require('method-override'),
     session         = require('express-session');
 
-var routes = require('./routes/index');
+var routes          = require('./routes/index');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,6 +25,37 @@ app.use(cookieParser('Quiz 2015'));
 app.use(session());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
+
+//Autologout
+
+app.use(function(req, res, next){
+    if(req.session.user){
+        
+        console.log("Comprobación autologout...");
+
+        var twoMinutes = 2 * 60 * 1000;
+        
+        var now = new Date().getTime();
+        var difference;
+        
+        if(req.session.user.lastActivity === undefined){
+            req.session.user.lastActivity = now;
+        }
+            
+        difference = now - req.session.user.lastActivity;
+        
+        if(difference < twoMinutes){
+            req.session.user.lastActivity = now;
+            console.log("--> Autologout cancelado");
+        }else{
+            delete req.session.user;
+            res.redirect(req.session.redir.toString()); // redirección a path anterior a login
+            console.log("--> Autologout aceptado");
+        }
+    }
+    
+    next();
+});
 
 // Helpers dinamicos:
 app.use(function(req, res, next) {
